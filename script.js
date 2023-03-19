@@ -9,35 +9,31 @@ const createTask =("click", (evento) => {
     input.value = "";
     //backlist
     const taskContent = document.createElement("div");
-    taskContent.appendChild(checkComplete());
     const titleTask = document.createElement("span");
     titleTask.classList.add("task");
     titleTask.innerText = value;
+    taskContent.appendChild(checkComplete());
     taskContent.appendChild(titleTask);
-    taskContent.appendChild(deleteTask());
-    console.log(checkComplete())
-    const content = `<div>`
     //task.innerHTML = content;
     task.appendChild(taskContent);
-
+    task.appendChild(deleteIcon())
     list.appendChild(task)
-    console.log(content);
 
 })
 
-console.log(btn);
 //Arrow functions o funciones anonimas
 btn.addEventListener("click", createTask)
 
-const deleteTask = () =>{
+const deleteIcon = () =>{
     const i = document.createElement("i");
-    i.classList.add("far");
-    i.classList.add("fa-trash-alt");
-    i.classList.add("trashIcon");
-    i.classList.add("icon");
+    i.classList.add("fas", "fa-trash-alt", "trashIcon", "icon");
+    i.addEventListener("click", deleteTask)
     return i;
 }
-
+ const deleteTask = (event) =>{
+    const parent = event.target.parentElement;
+    parent.remove(); 
+ }
 
 const checkComplete = () => {
     const i = document.createElement("i");
